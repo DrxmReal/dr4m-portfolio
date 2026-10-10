@@ -63,7 +63,7 @@ document.querySelectorAll(".mctooltip").forEach((item) => {
         tipLog({ type: "mouseleave", sy: Math.round(window.scrollY) });
     });
 });const bubbleTrigger=document.querySelector(".bubble-trigger");if(bubbleTrigger){bubbleTrigger.addEventListener("click",()=>{bubbleTrigger.classList.toggle("active")})}
-const soundPath="../src/assets/sounds/nom-nom-nom.mp3";const audio=new Audio(soundPath);if(eatDiv){eatDiv.addEventListener("click",()=>{audio.currentTime=0;audio.play();eatDiv.classList.add("shake");setTimeout(()=>{eatDiv.classList.remove("shake");eatDiv.classList.add("hidden")},1600)})}
+if(eatDiv){try{const soundPath="./src/assets/sounds/nom-nom-nom.mp3";const audio=new Audio(soundPath);eatDiv.addEventListener("click",()=>{audio.currentTime=0;audio.play().catch(()=>{});eatDiv.classList.add("shake");setTimeout(()=>{eatDiv.classList.remove("shake");eatDiv.classList.add("hidden")},1600)})}catch(e){}}
 
 // Music Control Logic
 const bgMusic = document.getElementById('bg-music');
@@ -92,30 +92,17 @@ if (crossBtn && bgMusic) {
     });
 }
 
-// Hacker URL Effect
+// Aesthetic Cyber Title Effect
 (function() {
-    const hexChars = "0123456789ABCDEF";
-    
-    function generateRandomHex(length) {
-        let result = "";
-        for (let i = 0; i < length; i++) {
-            result += hexChars[Math.floor(Math.random() * hexChars.length)];
-        }
-        return result;
-    }
-
+    const titles = [
+        "Dr4m ⚡ [Online]",
+        "Dr4m 🌌 Portfolio",
+        "Dr4m 🌸 Code & Medicine",
+        "Dr4m ✨ Systems Dev"
+    ];
+    let titleIdx = 0;
     setInterval(() => {
-        try {
-            const url = new URL(window.location.href);
-            // Update a 'sys_trace' query parameter to look like a system process
-            url.searchParams.set('sys_trace', '0x' + generateRandomHex(8));
-            
-            // Also optionally randomizing a hash part if user prefers that, but query param is safer for scroll.
-            // Let's stick to query param as it looks like data being passed.
-            
-            window.history.replaceState(null, '', url.toString());
-        } catch (e) {
-            console.error("URL update failed", e);
-        }
-    }, 100);
+        titleIdx = (titleIdx + 1) % titles.length;
+        document.title = titles[titleIdx];
+    }, 3500);
 })();

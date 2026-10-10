@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Outer cross -->
+  <path d="M 100 20 L 120 40 L 140 40 L 140 60 L 160 80 L 160 100 L 140 120 L 140 140 L 120 140 L 100 160 L 80 140 L 60 140 L 60 120 L 40 100 L 40 80 L 60 60 L 60 40 L 80 40 Z" fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- Inner decorative elements -->
+  <circle cx="100" cy="60" r="8" fill="#1a1a1a"/>
+  <circle cx="140" cy="100" r="8" fill="#1a1a1a"/>
+  <circle cx="100" cy="140" r="8" fill="#1a1a1a"/>
+  <circle cx="60" cy="100" r="8" fill="#1a1a1a"/>
+  
+  <!-- Center circle -->
+  <circle cx="100" cy="100" r="12" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+  
+  <!-- Decorative points at corners -->
+  <circle cx="65" cy="65" r="6" fill="#1a1a1a"/>
+  <circle cx="135" cy="65" r="6" fill="#1a1a1a"/>
+  <circle cx="135" cy="135" r="6" fill="#1a1a1a"/>
+  <circle cx="65" cy="135" r="6" fill="#1a1a1a"/>
+</svg>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="license" content="https://drxmreal.github.io/LICENSE" />
+		<meta name="description" content="Drxm — personal portfolio & socials" />
+		<meta name="theme-color" content="#ffceaa" />
+		<meta property="og:site_name" content="@Drxm" />
+		<meta
+			property="og:image"
+			content="https://drxmreal.github.io/src/assets/images/profile/thumbnail.webp" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="keywords"
+			content="drxm,portfolio,web,developer" />
+		<meta name="author" content="Drxm" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="preload"
+			href="https://fonts.googleapis.com/css2?family=Playpen+Sans&family=Great+Vibes&family=Passion+One&family=Poetsen+One&family=Quicksand:wght@400;500;600;700&display=swap"
+			as="style"
+			onload='this.rel="stylesheet"' />
+		<noscript>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Playpen+Sans&family=Great+Vibes&family=Passion+One&family=Poetsen+One&family=Quicksand:wght@400;500;600;700&display=swap"
+				rel="stylesheet" />
+		</noscript>
+		<link rel="canonical" href="https://drxmreal.github.io/" />
+		<link rel="icon" href="./src/favicon.ico" />
+		<link rel="stylesheet" href="./css/style.css?v=4" />
+		<link rel="stylesheet" href="./css/enhancements.css?v=12" />
+		<style>
+body,
+			body::before {
+				background-image: url("https://my-passion.blog/wp-content/uploads/2019/12/dark-blue-gif-2.gif") !important;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+	</style>
+	<title>Drxm</title>
+</head>
+	<body oncontextmenu="return!0">
+		<!-- Ambient aurora light layer -->
+		<div class="aurora" aria-hidden="true"></div>
+		<!-- Background Music -->
+		<audio id="bg-music" loop style="display:none;">
+			<source src="./src/assets/music/music.mp3" type="audio/mpeg">
+		</audio>
+
+		<div class="container">
+			<header id="profile">
+				<div class="about-me" id="about-me">
+					<div class="avatar-box bubble-trigger">
+						<img
+								loading="lazy"
+								title="Artist: Edgar, pixiv: 5833213"
+								class="big-avatar"
+								src="./src/waguri_kaoruko.webp"
+								alt="Avatar" />
+	<img
+									loading="lazy"
+									src="./src/assets/images/decor/hat.png"
+									class="avatar-pendant"
+									onerror="this.style.display='none'"
+									alt="Heart Pendant" />
+						<div class="hairclip item mctooltip" style="display: none">
+							<div class="tooltip" style="display: none">
+								<span>Carved Pumpkin</span>
+								<br />
+								<span style="color: #ff6062; text-shadow: 0.11em 0.11em #002900"
+									>Curse of Binding</span
+								>
+								<br />
+								<span style="color: #545454; text-shadow: 0.11em 0.11em #151515"
+									>minecraft:carved_pumpkin</span
+								>
+							</div>
+						</div>
+						<div class="dot-box">
+							<div class="status-discord">
+								<div class="empty"></div>
+								<p>Offline</p>
+							</div>
+							<span class="ping"></span>
+							<span class="dot"></span>
+						</div>
+						<div class="position">
+							<div class="bubble"></div>
+							<div class="status-bubble">
+								<span class="pin icon-1"></span>
+								<span class="status-content" alt="text-content">
+									<!-- <img
+										loading="lazy"
+										class="emoji"
+										src="./src/assets/images/none"
+										loading="lazy" /> -->
+									Hello, I'm Drxm!
+								</span>
+								<span class="pin icon-2"></span>
+							</div>
+						</div>
+					</div>
+					<div class="mememe">
+						<div class="username">
+							<h1 translate="no" class="name" alt="Drxm">
+								Drxm
+							</h1>
+							<div
+								class="poppy item mctooltip"
+								style="">
+								<div class="tooltip" style="display: none">
+									<span style="color: #ffffff; font-style: italic"
+										>My life :</span
+									>
+									<br />
+									<span
+										style="color: #ffffff;"
+										>trash</span
+									>
+									<br />
+									<span
+										style="color: #ffffff;"
+										>boring</span
+									>
+									<br />
+									<span
+										style="color: #ffffff;"
+										>shit</span
+									>
+								</div>
+							</div>
+						</div>
+						<p class="tagline">medicine × code × anime</p>
+						<div class="line" id="l1">
+							a 21-year-old medical student from Vietnam, in my 2nd year of med school 🇻🇳
+						</div>
+						<div class="line" id="l2">
+							balancing the precision of medicine with the creativity of code, and finding inspiration in anime and gaming along the way
+						</div>
+						<div class="line" id="l3">
+							always learning, always building — whether it's in the classroom, the editor, or another world entirely
+						</div>
+						<div class="line" id="l4">
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="wrapper" id="wrapper">
+				<div class="bento" id="bento">
+					<a href="#wrapper" class="widget widget-clock">
+						<img loading="lazy" class="clock-video" src="https://i.pinimg.com/originals/f0/ef/82/f0ef8253b7ef3153c4087428d12f0b8e.gif" alt="Background" />
+						<div class="vignette"></div>
+						<div class="clock-container">
+							<span id="time" class="time"></span>
+							<span id="day" class="day"></span>
+							<span id="date" class="date"></span>
+						</div>
+						<p>UTC+7</p>
+					</a>
+					<div class="widget widget-display" id="img1">
+						<img
+							loading="lazy"
+							class="img"
+							src="https://preview.redd.it/volume-23-rimuru-vs-aeons-v0-tnzw8iwjltrg1.gif?auto=webp&s=1cd5fecf6cf997c61ce81f012419ec026bf69a25"
+							alt="Cake" />
+						<p>(￣﹃￣)</p>
+					</div>
+					<a
+						class="widget widget-social"
+						href="https://www.youtube.com/@SalakoReal"
+						rel="noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon">
+								<img
+									loading="lazy"
+									src="./src/assets/images/icons/youtube.svg"
+									alt="YouTube Icon" />
+							</div>
+							<div class="meta">
+								<b>YouTube</b>
+								<p>SalakoReal</p>
+							</div>
+							<div
+								style="background-color: #eb0404; border-radius: 30px"
+								class="follow">
+								Subscribe
+							</div>
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						href="https://www.tiktok.com/@dungfx123"
+						rel="noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon">
+								<img
+									loading="lazy"
+									src="./src/assets/images/icons/tiktok.svg" />
+							</div>
+							<div class="meta">
+								<b>TikTok</b>
+								<p>@dungfx123</p>
+							</div>
+							<div
+								style="background-color: #ea435a; border-radius: 5px"
+								class="follow">
+								Follow
+							</div>
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						href="https://www.facebook.com/otrungdung.163623"
+						rel="noreferrer noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon" style="background-color: #fff">
+								<img
+									loading="lazy"
+									src="./src/assets/images/social/Facebook.svg" />
+							</div>
+							<div class="meta">
+								<b>Facebook</b>
+								<p>Otrungdung</p>
+							</div>
+							<div
+								style="background-color: #0866ff; border-radius: 5px"
+								class="follow">
+								Add Friend
+							</div>
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						href="https://open.spotify.com/user/31gkbaim4tvdlklf7apqpp3wd3dm"
+						rel="noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon" style="background-color: #fff">
+								<img
+									loading="lazy"
+									src="./src/assets/images/social/Spotify.svg" />
+							</div>
+							<div class="meta">
+								<b>Spotify</b>
+								<p>SalakoReal</p>
+							</div>
+							<div
+								style="
+									background-color: #f6f8fa;
+									border-radius: 30px;
+									color: #24292f;
+									outline: 1px solid #33333336;
+								"
+								class="follow">
+								Listening with me
+							</div>
+						</div>
+					</a>
+<div class="widget widget-display" id="img2">
+						<img
+							loading="lazy"
+							class="img"
+							src="https://64.media.tumblr.com/960ec20cd45a88f227d652a1e4d716ca/a2e268a8153a8906-af/s640x960/68041b04f7276954d6fc0efc6bff812b408d18be.gif" />
+						<p>(,,>﹏<,,)</p>
+					</div>
+					<a
+						class="widget widget-social"
+						href="https://discord.gg/nJ9PFqG8"
+						rel="noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon">
+								<img
+									loading="lazy"
+									src="./src/assets/images/icons/discord.svg" />
+							</div>
+							<div class="meta">
+								<b>Discord</b>
+								<p>SLK Community</p>
+							</div>
+							<div
+								style="background-color: #5865f2; border-radius: 5px"
+								class="follow">
+								Join Server
+							</div>
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						href="https://shopee.vn/mall"
+						rel="noreferrer noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon" style="background-color: #fff">
+								<img
+									loading="lazy"
+									src="./src/assets/images/social/shopee.svg" />
+							</div>
+							<div class="meta">
+									<b>Shopee</b>
+									<p>shopee.vn</p>
+								</div>
+								<div
+									style="background-color: #ee4d2d; border-radius: 5px"
+									class="follow">
+									My Collection
+								</div>
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						href="https://steamcommunity.com/id/ChocomintSoSweet/"
+						rel="noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon" style="background-color: #fff">
+								<img
+									loading="lazy"
+									src="./src/assets/images/social/Steam.svg" />
+							</div>
+							<div class="meta">
+								<b>Steam</b>
+								<p>ChocomintSoSweet</p>
+							</div>
+							<div
+								style="
+									background-color: #f6f8fa;
+									border-radius: 5px;
+									color: #24292f;
+									outline: 1px solid #33333336;
+								"
+								class="follow">
+								Add Friend
+							</div>
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						href="https://github.com/DrxmReal"
+						rel="noreferrer noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon">
+								<img
+									loading="lazy"
+									src="./src/assets/images/icons/github.svg" />
+							</div>
+							<div class="meta">
+								<b>Github</b>
+								<p>DrxmReal</p>
+							</div>
+							<div
+								style="
+									background-color: #f6f8fa;
+									border-radius: 5px;
+									color: #24292f;
+									outline: 1px solid #33333336;
+								"
+								class="follow">
+								Follow
+							</div>
+						</div>
+					</a>
+					<a class="widget widget-social discord-rpc">
+						<div class="discord">
+							<div class="content">
+								<div class="icon" style="--size: 100%">
+									<svg width="40" height="40" viewBox="0 0 40 40">
+										<defs>
+											<mask
+												id="mask-avatar"
+												maskContentUnits="objectBoundingBox"
+												viewBox="0 0 1 1">
+												<rect
+													fill="white"
+													x="0"
+													y="0"
+													width="100%"
+													height="100%"></rect>
+												<circle
+													fill="black"
+													cx="0.855"
+													cy="0.855"
+													r="0.2"></circle>
+											</mask>
+										</defs>
+										<foreignObject
+											width="40"
+											height="40"
+											mask="url(#mask-avatar)">
+											<div class="avatar"></div>
+										</foreignObject>
+									</svg>
+									<div class="color-dot"></div>
+								</div>
+								<div class="meta">
+									<div class="display-name bold overflow"></div>
+									<div class="opaque overflow">
+										<span class="status"></span>
+										<span class="activity bold"></span>
+									</div>
+								</div>
+							</div>
+							<div class="rpc">
+								<div class="image-container">
+									<svg width="72" height="72" viewBox="0 0 72 72">
+										<defs>
+											<mask
+												id="mask-large-image"
+												maskContentUnits="objectBoundingBox"
+												viewBox="0 0 1 1">
+												<rect
+													fill="white"
+													x="0"
+													y="0"
+													width="100%"
+													height="100%"></rect>
+												<circle
+													fill="black"
+													cx="0.86"
+													cy="0.86"
+													r="0.25"></circle>
+											</mask>
+										</defs>
+										<foreignObject
+											width="72"
+											height="72"
+											mask="url(#mask-large-image)">
+											<div class="large-image"></div>
+										</foreignObject>
+									</svg>
+									<div class="small-image"></div>
+								</div>
+								<div class="meta opaque">
+									<div class="details overflow"></div>
+									<div class="state overflow"></div>
+									<div class="timestamp overflow"></div>
+									<div class="timebar-container" style="display: none">
+										<div class="current-time"></div>
+										<div class="timebar-background">
+											<div class="timebar-progress"></div>
+										</div>
+										<div class="total-time"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="free" style="display: none">
+							I'm not currently doing anything 🍵
+						</div>
+					</a>
+					<a
+						class="widget widget-social"
+						id="mail"
+						href="mailto:Tube83001@gmail.com"
+						rel="noopener"
+						target="_blank">
+						<div class="meta-container">
+							<div class="icon" style="background-color: #fff">
+								<img
+									loading="lazy"
+									src="./src/assets/images/social/gmail.svg" />
+							</div>
+							<div class="meta">
+								<b>Email</b>
+								<p>Tube83001@gmail.com</p>
+							</div>
+							<button
+								type="button"
+								class="follow"
+								id="copy-email"
+								title="Copy email to clipboard"
+								onclick="event.preventDefault();event.stopPropagation();navigator.clipboard.writeText('Tube83001@gmail.com').then(()=>{const b=document.getElementById('copy-email');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)})">
+								Copy
+							</button>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<button aria-label="Back to top" id="back-to-top"></button>
+		<a
+			href="./meow"
+			rel="noopener"
+			target="_blank"
+			class="list"
+			title="Stop coping me meow!"
+			style="display:none;"></a>
+		<script async src="./scripts/clock.js?v=2"></script>
+		<script defer="defer" src="./scripts/script.js?v=matrix4"></script>
+		<script defer="defer" src="./scripts/lanyard.js?v=2"></script>
+		<script defer="defer" src="./scripts/enhancements.js?v=3"></script>
+	<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5c5a7f8570964855bc6193144426f3a3"}'></script><!-- Cloudflare Pages Analytics --></body>
+</html>

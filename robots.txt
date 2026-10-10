@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /src/assets/images/backgrounds/
+Disallow: /src/assets/images/decor/
+Disallow: /src/assets/images/decor/hat.png
+Disallow: /src/assets/images/icons/
+Disallow: /src/assets/images/social/
+Disallow: /src/assets/fonts/
+Disallow: /src/assets/sounds/
+Disallow: /src/public/
+Disallow: /src/favicon.ico
+Disallow: /src/waguri_kaoruko.webp
+Allow: /src/assets/images/profile/
+Sitemap: https://drxmreal.github.io/sitemap.xml

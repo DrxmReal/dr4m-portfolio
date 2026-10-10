@@ -1,0 +1,935 @@
+/* ============================================
+   ENHANCEMENTS - Gradient borders, animations
+   ============================================ */
+
+/* ===== 1. Gradient border dong cho widgets ===== */
+.widget {
+    position: relative;
+}
+
+.widget::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 180, 216, 0.6),
+        rgba(0, 119, 182, 0.3),
+        rgba(72, 202, 228, 0.5),
+        rgba(0, 180, 216, 0.6)
+    );
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: gradientBorder 8s linear infinite;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.widget:hover::before {
+    opacity: 1;
+    animation-duration: 3s;
+}
+
+@keyframes gradientBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== 2. Smooth animation hover cho social widgets ===== */
+.widget-social {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                background-color 0.3s ease;
+}
+
+.widget-social:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 119, 182, 0.5),
+                0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.widget-social:hover .meta b {
+    background: linear-gradient(135deg, #00b4d8, #0077b6, #48cae4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: -webkit-text-fill-color 0.3s ease;
+}
+
+.widget-social .follow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.widget-social:hover .follow {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+.widget-social .icon img {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.widget-social:hover .icon img {
+    transform: rotate(-8deg) scale(1.15);
+}
+
+/* ===== 3. Typing animation handled by JS ===== */
+.typing-caret {
+    display: inline-block !important;
+    width: 2px !important;
+    height: 1.1em !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    margin-left: 1px !important;
+    animation: blinkCaret 0.75s step-end infinite !important;
+    vertical-align: text-bottom !important;
+}
+
+@keyframes blinkCaret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ===== 4. Loading skeleton cho Discord RPC ===== */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.06) 25%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.06) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.discord-rpc.loading .discord {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.discord-rpc.loading .rpc-skeleton {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    padding: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.rpc-skeleton { display: none; }
+
+.rpc-skeleton .sk-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.rpc-skeleton .sk-large-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.rpc-skeleton .sk-text-group {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rpc-skeleton .sk-line {
+    height: 10px;
+    border-radius: 6px;
+}
+
+.rpc-skeleton .sk-line-short { width: 50%; }
+.rpc-skeleton .sk-line-medium { width: 75%; }
+.rpc-skeleton .sk-line-long { width: 90%; }
+
+.rpc-skeleton .sk-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+/* ===== 5. Music toggle button ===== */
+#music-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 30, 60, 0.85), rgba(0, 40, 80, 0.85));
+    backdrop-filter: blur(20px);
+    outline: 1px solid rgba(0, 119, 182, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#music-toggle-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 25px rgba(0, 119, 182, 0.5);
+}
+
+#music-toggle-btn.playing {
+    background: linear-gradient(135deg, rgba(0, 150, 199, 0.8), rgba(0, 119, 182, 0.5));
+}
+
+#music-toggle-btn.playing::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 150, 199, 0.8);
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 0.3; }
+}
+
+#music-toggle-btn svg {
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    z-index: 1;
+}
+
+.music-equalizer {
+    display: none;
+    gap: 2px;
+    align-items: flex-end;
+    height: 18px;
+}
+
+#music-toggle-btn.playing .music-equalizer { display: flex; }
+#music-toggle-btn.playing svg { display: none; }
+
+.music-equalizer span {
+    width: 3px;
+    background: #fff;
+    border-radius: 2px;
+    animation: eq 0.8s ease-in-out infinite;
+}
+
+.music-equalizer span:nth-child(1) { animation-delay: 0s; }
+.music-equalizer span:nth-child(2) { animation-delay: 0.2s; }
+.music-equalizer span:nth-child(3) { animation-delay: 0.4s; }
+.music-equalizer span:nth-child(4) { animation-delay: 0.1s; }
+
+@keyframes eq {
+    0%, 100% { height: 4px; }
+    50% { height: 16px; }
+}
+
+/* ===== 6. Toast notification ===== */
+.toast-container {
+    position: fixed !important;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    background: linear-gradient(135deg, rgba(0, 30, 60, 0.85), rgba(0, 40, 80, 0.85));
+    backdrop-filter: blur(20px);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    outline: 1px solid rgba(0, 119, 182, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: toastIn 0.3s ease forwards;
+    pointer-events: auto;
+}
+
+.toast.toast-out {
+    animation: toastOut 0.3s ease forwards;
+}
+
+@keyframes toastIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut {
+    to { opacity: 0; transform: translateY(20px); }
+}
+
+.toast-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* ===== 7. Spotify Now Playing widget ===== */
+.spotify-widget {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.spotify-widget .spotify-content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.spotify-widget .spotify-album {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spotify-widget .spotify-album::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg, transparent 50%, rgba(30, 215, 96, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.spotify-widget:hover .spotify-album::after { opacity: 1; }
+
+.spotify-widget .spotify-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.spotify-widget .spotify-title {
+    font-weight: 700;
+    font-size: 0.85em;
+    color: #00b4d8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-widget .spotify-artist {
+    font-size: 0.75em;
+    color: var(--sub-text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-widget .spotify-progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.spotify-widget .spotify-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #00b4d8, #00b4d8);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 1s linear;
+}
+
+/* ===== 8. GitHub stats widget ===== */
+.github-widget {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+}
+
+.github-widget .gh-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.github-widget .gh-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.github-widget .gh-name {
+    font-weight: 700;
+    color: #fff;
+}
+
+.github-widget .gh-login {
+    font-size: 0.75em;
+    color: var(--sub-text-color);
+}
+
+.github-widget .gh-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: space-around;
+}
+
+.github-widget .gh-stat {
+    text-align: center;
+    flex: 1;
+}
+
+.github-widget .gh-stat-num {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.github-widget .gh-stat-label {
+    font-size: 0.65em;
+    color: var(--sub-text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ===== 9. Easter egg alert ===== */
+.easter-egg-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background: linear-gradient(135deg, rgba(0, 30, 60, 0.85), rgba(0, 40, 80, 0.85));
+    backdrop-filter: blur(20px);
+    padding: 30px 50px;
+    border-radius: 20px;
+    outline: 2px solid rgba(0, 150, 199, 0.8);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(0, 150, 199, 0.8);
+    color: #fff;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.5em;
+    animation: eggPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes eggPop {
+    from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* ===== 10. Override grid de them Spotify + GitHub ===== */
+:root {
+    --repeat: 9 !important;
+}
+
+.bento {
+    grid-template-rows: repeat(9, 175px) 67.5px !important;
+    grid-template-areas:
+        "c c c c"
+        "c c c c"
+        "d d h1 h1"
+        "s1 s2 h1 h1"
+        "h2 h2 s3 s4"
+        "h2 h2 s5 s6"
+        "s7 s8 m m"
+        "sp sp gh gh"
+        "f f f f" !important;
+}
+
+.bento > .widget-clock { grid-area: c !important; }
+.bento > .widget-display#img1 { grid-area: h1 !important; }
+.bento > .widget-social:nth-of-type(1) { grid-area: s1 !important; }
+.bento > .widget-social:nth-of-type(2) { grid-area: s2 !important; }
+.bento > .widget-social:nth-of-type(3) { grid-area: s3 !important; }
+.bento > .widget-social:nth-of-type(4) { grid-area: s4 !important; }
+.bento > .widget-display#img2 { grid-area: h2 !important; }
+.bento > .widget-social:nth-of-type(5) { grid-area: s5 !important; }
+.bento > .widget-social:nth-of-type(6) { grid-area: s6 !important; }
+.bento > .widget-social:nth-of-type(7) { grid-area: s7 !important; }
+.bento > .widget-social:nth-of-type(8) { grid-area: s8 !important; }
+.bento > .discord-rpc { grid-area: d !important; }
+.bento > .widget-social#mail { grid-area: m !important; }
+
+.spotify-widget {
+    grid-area: sp !important;
+}
+
+.github-widget {
+    grid-area: gh !important;
+}
+
+/* Responsive mobile */
+@media (width < 900px) {
+    .bento {
+        grid-template-rows: repeat(13, 178px) !important;
+        grid-template-areas:
+            "c c"
+            "d d"
+            "s1 s2"
+            "s3 s4"
+            "h1 h2"
+            "s5 s6"
+            "s7 s8"
+            "m m"
+            "sp sp"
+            "gh gh"
+            "f f" !important;
+    }
+}
+
+/* ============================================
+   11. CUSTOM CURSOR GLOW
+   ============================================ */
+@media (pointer: fine) {
+    /* cursor:none only when the JS cursor is actually running (html.has-cursor-glow) */
+    html.has-cursor-glow body { cursor: none; }
+
+    .cursor-glow,
+    .cursor-dot {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 99999;
+        border-radius: 50%;
+        mix-blend-mode: screen;
+    }
+
+    .cursor-glow {
+        width: 36px;
+        height: 36px;
+        margin: -18px 0 0 -18px;
+        background: radial-gradient(circle, rgba(0, 150, 199, 0.8), rgba(0, 119, 182, 0.5) 60%, transparent 70%);
+        filter: blur(4px);
+        transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, opacity 0.25s ease;
+        opacity: 0.9;
+    }
+
+    .cursor-dot {
+        width: 6px;
+        height: 6px;
+        margin: -3px 0 0 -3px;
+        background: #fff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+    }
+
+    .cursor-glow.hover {
+        width: 64px;
+        height: 64px;
+        margin: -32px 0 0 -32px;
+        opacity: 1;
+        background: radial-gradient(circle, rgba(72, 202, 228, 0.7), rgba(0, 150, 199, 0.8) 60%, transparent 70%);
+    }
+
+    .cursor-glow.click {
+        width: 24px;
+        height: 24px;
+        margin: -12px 0 0 -12px;
+    }
+
+    html.has-cursor-glow a, html.has-cursor-glow button,
+    html.has-cursor-glow .widget, html.has-cursor-glow .follow,
+    html.has-cursor-glow .item { cursor: none; }
+}
+
+@media (pointer: coarse) {
+    .cursor-glow, .cursor-dot { display: none !important; }
+}
+
+/* ============================================
+   12. SCROLL REVEAL
+   (gated behind html.sr, added by JS — no-JS visitors see everything)
+   ============================================ */
+html.sr .widget {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.sr .widget-clock {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+html.sr .widget.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Stagger delay via inline style from JS */
+/* Clock reveals first, no transform */
+html.sr .widget-clock.revealed { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html.sr .widget { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============================================
+   13. VISITOR COUNTER (in footer area)
+   ============================================ */
+.visitor-counter {
+    grid-area: f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 0 16px;
+    z-index: 1;
+}
+
+.visitor-counter .vc-icon {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(0, 150, 199, 0.8);
+}
+
+.visitor-counter .vc-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.visitor-counter .vc-number {
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #00b4d8, #0077b6, #48cae4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    min-width: 1ch;
+    text-align: right;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.visitor-counter .vc-number.bump {
+    transform: scale(1.4);
+}
+
+.visitor-counter .vc-label {
+    opacity: 0.7;
+}
+
+/* Preserve original footer p inside visitor area */
+.visitor-counter ~ footer,
+footer p { /* keep original footer text styling intact */ }
+
+/* ============================================
+   14. POPPY MUSIC-ON GLOW
+   (glow lives on a ::before pseudo — a filter on .poppy itself
+   would become the containing block of the fixed-position
+   Minecraft tooltip and fling it off-position on click)
+   ============================================ */
+.poppy::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    background: inherit;
+    filter: blur(6px) brightness(1.7);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.poppy.music-on::before { opacity: 0.9; }
+
+/* ============================================
+   15. MINECRAFT TOOLTIP — recolored to site palette
+   (navy glass + cyan border instead of black/purple)
+   ============================================ */
+.mctooltip .tooltip {
+    background-color: rgba(2, 20, 42, 0.93);
+    border: 3px solid #00b4d8;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(72, 202, 228, 0.3),
+                0 0 18px rgba(0, 119, 182, 0.5),
+                2px 2px 1px rgb(0 0 0 / .377);
+    text-shadow: 0.11em 0.11em #012240;
+}
+
+/* Self-contained styling for the floating tooltip (reparented to <body> on
+   first show, so the `.mctooltip .tooltip` descendant rules no longer match).
+   Anchored directly under <body> it can never be displaced by ancestor
+   transforms/filters — position stays viewport-correct on hover, click and
+   scroll. Palette matches section above. */
+.tooltip.mc-floating {
+    position: fixed;
+    z-index: 1000;
+    display: none;
+    font-family: "Quicksand", sans-serif;
+    font-size: 15px;
+    padding: 5px 7px;
+    border-radius: 8px;
+    color: #fcfcfc;
+    background-color: rgba(2, 20, 42, 0.93);
+    border: 3px solid #00b4d8;
+    box-shadow: 0 0 0 1px rgba(72, 202, 228, 0.3),
+                0 0 18px rgba(0, 119, 182, 0.5),
+                2px 2px 1px rgb(0 0 0 / .377);
+    text-shadow: 0.11em 0.11em #012240;
+    word-spacing: 0.2em;
+    line-height: 1.4em;
+    opacity: 0.95;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+    filter: drop-shadow(2px 2px 1px rgb(0 0 0 / .377));
+}
+
+.tooltip.mc-floating span { vertical-align: top; }
+
+/* ============================================
+   15b. BASE BODY FONT — elements without their
+   own font rule previously fell back to the
+   browser default serif (Times New Roman)
+   ============================================ */
+body {
+    font-family: "Quicksand", "Playpen Sans", sans-serif;
+}
+
+/* ============================================
+   16. AURORA AMBIENT LIGHT
+   Two slow drifting light blobs behind the
+   content — depth without noise. Composited
+   transform-only animation.
+   ============================================ */
+.aurora {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.aurora::before,
+.aurora::after {
+    content: "";
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    border-radius: 50%;
+    filter: blur(90px);
+    mix-blend-mode: screen;
+}
+
+.aurora::before {
+    background: radial-gradient(circle at 30% 30%, #00b4d8, transparent 62%);
+    top: -18%;
+    left: -12%;
+    opacity: 0.22;
+    animation: auroraDriftA 46s ease-in-out infinite alternate;
+}
+
+.aurora::after {
+    background: radial-gradient(circle at 70% 70%, #0096d8, transparent 62%);
+    bottom: -22%;
+    right: -16%;
+    opacity: 0.13;
+    animation: auroraDriftB 58s ease-in-out infinite alternate;
+}
+
+@keyframes auroraDriftA {
+    to { transform: translate(12vw, 9vh) scale(1.15); }
+}
+
+@keyframes auroraDriftB {
+    to { transform: translate(-10vw, -7vh) scale(1.12); }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   17. HERO TYPOGRAPHY
+   Display name in Poetsen One with a slow cyan
+   shimmer sweep; script-font tagline beneath.
+   ============================================ */
+.username .name {
+    font-family: "Poetsen One", "Playpen Sans", sans-serif;
+    font-size: clamp(2em, 3.6vw, 2.6em);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    text-shadow: 0 2px 14px rgba(0, 180, 216, 0.45),
+                 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Cross icon: box sized so the visible graphic optically matches the name */
+.username .poppy {
+    width: 52px !important;
+    height: 52px !important;
+    margin-left: 8px;
+}
+
+@media (width < 900px) {
+    .username .poppy {
+        width: 42px !important;
+        height: 42px !important;
+    }
+}
+
+@keyframes heroShimmer {
+    to { background-position: 200% 0; }
+}
+
+.tagline {
+    font-family: "Great Vibes", cursive;
+    font-size: 1.55em;
+    line-height: 1.2;
+    color: rgba(124, 224, 255, 0.85);
+    margin: -2px 0 0;
+    display: inline-block;
+    transform: rotate(-2deg);
+    text-shadow: 0 1px 10px rgba(0, 119, 182, 0.4);
+}
+
+/* ============================================
+   18. FILM GRAIN — barely-there texture that
+   makes the glass surfaces read as material
+   ============================================ */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ============================================
+   19. SCROLLBAR + SELECTION + SMOOTH SCROLL
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgba(0, 180, 216, 0.85);
+    color: #02121f;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(2, 20, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00b4d8, #0077b6);
+    border-radius: 8px;
+    border: 2px solid rgba(2, 20, 42, 0.6);
+}
+
+* {
+    scrollbar-color: #00b4d8 rgba(2, 20, 42, 0.6);
+    scrollbar-width: thin;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .aurora::before,
+    .aurora::after { animation: none; }
+    .username .name { animation: none; }
+}
+
+/* ============================================
+   20. WIDGET GLASS — navy/cyan palette
+   Original style.css tinted widgets purple
+   (rgba(50,40,60) glass + rgb(150,100,200)
+   outline) and used dark text for the Discord
+   card. Re-anchor everything to the navy/cyan
+   system.
+   ============================================ */
+.widget,
+.widget.discord-rpc,
+.discord-rpc {
+    background: linear-gradient(135deg, rgba(8, 26, 48, 0.72), rgba(10, 36, 64, 0.72));
+    outline: 1px solid rgba(0, 180, 216, 0.28);
+}
+
+.discord .opaque,
+.discord .opaque .status,
+.discord .opaque .activity {
+    color: #b9d4e8;
+}
+
+.discord-rpc .free {
+    color: #dceaf7;
+}
+
+:root {
+    --sub-text-color: #c9d9e8;
+}
+
+/* ============================================
+   21. CORNER BUTTONS — compact back-to-top,
+   music toggle moved to the free bottom-left
+   corner (was bottom-right, colliding with
+   the back-to-top image)
+   ============================================ */
+#back-to-top {
+    width: 96px;
+    min-height: 96px;
+    height: 96px;
+    right: 16px;
+}
+
+#music-toggle-btn {
+    left: 20px;
+    right: auto;
+}
